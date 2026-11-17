@@ -25,12 +25,104 @@ The platform uses signed two's complement integer arithmetic with int and long p
 
 
 ## PROGRAM:
+# MainActivity.kt
+```package com.example.simplecalc   // keep the package name Android Studio generated
 
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val n1 = findViewById<EditText>(R.id.num1)
+        val n2 = findViewById<EditText>(R.id.num2)
+        val result = findViewById<TextView>(R.id.result)
+
+        fun calculate(op: Char) {
+            val a = n1.text.toString().toDoubleOrNull()
+            val b = n2.text.toString().toDoubleOrNull()
+            if (a == null || b == null) {
+                result.text = "Enter both numbers"
+                return
+            }
+            val answer = when (op) {
+                '+' -> a + b
+                '-' -> a - b
+                '*' -> a * b
+                else -> {
+                    if (b == 0.0) { result.text = "Cannot divide by 0"; return }
+                    a / b
+                }
+            }
+            result.text = "Result: $answer"
+        }
+
+        findViewById<Button>(R.id.btnAdd).setOnClickListener { calculate('+') }
+        findViewById<Button>(R.id.btnSub).setOnClickListener { calculate('-') }
+        findViewById<Button>(R.id.btnMul).setOnClickListener { calculate('*') }
+        findViewById<Button>(R.id.btnDiv).setOnClickListener { calculate('/') }
+    }
+}
+```
+## Activity_main.xml
+```<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <EditText
+        android:id="@+id/num1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="First number"
+        android:inputType="numberDecimal|numberSigned" />
+
+    <EditText
+        android:id="@+id/num2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Second number"
+        android:inputType="numberDecimal|numberSigned" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button android:id="@+id/btnAdd" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1" android:text="+" />
+        <Button android:id="@+id/btnSub" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1" android:text="−" />
+        <Button android:id="@+id/btnMul" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1" android:text="×" />
+        <Button android:id="@+id/btnDiv" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1" android:text="÷" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Result: "
+        android:textSize="24sp"
+        android:textStyle="bold" />
+</LinearLayout>
+```
 
 
 ## OUTPUT:
 
+<img width="392" height="797" alt="image" src="https://github.com/user-attachments/assets/7343b67a-b673-45fa-bb18-276b7ce3c290" />
 
 
 
