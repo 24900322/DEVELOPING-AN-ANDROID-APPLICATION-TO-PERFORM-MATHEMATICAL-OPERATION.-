@@ -121,9 +121,7 @@ class MainActivity : AppCompatActivity() {
 
 
 ## OUTPUT:
-
-<img width="392" height="797" alt="image" src="https://github.com/user-attachments/assets/7343b67a-b673-45fa-bb18-276b7ce3c290" />
-
+<img width="1917" height="1077" alt="image" src="https://github.com/user-attachments/assets/4a899f9a-fafb-40ae-8cdc-e0cce22e9ef2" />
 
 
 ## RESULT:
